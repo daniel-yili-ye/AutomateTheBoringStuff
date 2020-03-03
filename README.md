@@ -1,3 +1,3 @@
 # AutomateTheBoringStuff
 
-My answers for the Automate the Boring Stuff with Python course taught by Al Sweigart
+My answers for the "Automate the Boring Stuff with Python" course taught by Al Sweigart
