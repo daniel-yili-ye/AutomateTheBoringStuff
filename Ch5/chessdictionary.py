@@ -19,6 +19,24 @@ chessBoard = {'a8': 'brook', 'b8': 'bknight', 'c8': 'bbishop', 'd8': 'bqueen', '
             'a2': 'wpawn', 'b2': 'wpawn', 'c2': 'wpawn', 'd2': 'wpawn', 'e2': 'wpawn', 'f2': 'wpawn', 'g2': 'wpawn', 'h2': 'wpawn',
             'a1': 'wrook', 'b1': 'wknight', 'c1': 'wbishop', 'd1': 'wqueen', 'e1': 'wking', 'f1': 'wbishop', 'g1': 'wknight', 'h1': 'wrook'}
 
+def kingcounter(board):
+    wkingcounter = 0
+    bkingcounter = 0
+    for v in board.values():
+        if v == "wking":
+            wkingcounter += 1
+            if wkingcounter > 1:
+                return False
+        elif v == "bking":
+            bkingcounter += 1
+            if bkingcounter > 1:
+                return False
+    if bkingcounter and wkingcounter != 1:
+        return False
+    else:
+        return True
+
+
 def isValidChessBoard(board):
     for k in board.keys():
         if k not in chessBoard.keys():
@@ -31,6 +49,7 @@ def isValidChessBoard(board):
 
 # still have to program in duplicate key detection and duplicate value detection for each pieces
 
-test = {'a8': 'lajsdlfk', 'a7': 'bbishop'}
+test = {'a8': 'wking', 'a7': 'bbishop', 'a6': 'bking'}
 
 print (isValidChessBoard(test))
+print (kingcounter(test))
