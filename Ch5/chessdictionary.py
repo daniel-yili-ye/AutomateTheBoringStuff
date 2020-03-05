@@ -19,23 +19,20 @@ chessBoard = {'a8': 'brook', 'b8': 'bknight', 'c8': 'bbishop', 'd8': 'bqueen', '
             'a2': 'wpawn', 'b2': 'wpawn', 'c2': 'wpawn', 'd2': 'wpawn', 'e2': 'wpawn', 'f2': 'wpawn', 'g2': 'wpawn', 'h2': 'wpawn',
             'a1': 'wrook', 'b1': 'wknight', 'c1': 'wbishop', 'd1': 'wqueen', 'e1': 'wking', 'f1': 'wbishop', 'g1': 'wknight', 'h1': 'wrook'}
 
-def kingcounter(board):
-    wkingcounter = 0
-    bkingcounter = 0
-    for v in board.values():
-        if v == "wking":
-            wkingcounter += 1
-            if wkingcounter > 1:
-                return False
-        elif v == "bking":
-            bkingcounter += 1
-            if bkingcounter > 1:
-                return False
-    if bkingcounter and wkingcounter != 1:
+chessDictionary = {}
+
+def countVerify(board):
+    for k, v in board.items():
+        chessDictionary[v] = chessDictionary.get(v,0) + 1
+    for v in chessDictionary.values():
+        if v > 10:
+            return False
+    if (int(chessDictionary.get('wking',0)) != 1) or (int(chessDictionary.get('bking',0)) != 1):
+        return False
+    elif (int(chessDictionary.get('wpawn',0)) > 8) or (int(chessDictionary.get('bpawn',0)) > 8):
         return False
     else:
         return True
-
 
 def isValidChessBoard(board):
     for k in board.keys():
@@ -44,12 +41,10 @@ def isValidChessBoard(board):
     for v in board.values():
         if v not in chessBoard.values():
             return False
-        else:
-            return True
+    else:
+        return countVerify(board)
 
-# still have to program in duplicate key detection and duplicate value detection for each pieces
-
-test = {'a8': 'wking', 'a7': 'bbishop', 'a6': 'bking'}
+test = {'a8': 'wking', 'c1': 'bking', 'c3': 'wpawn', 'c5': 'wpawn'}
 
 print (isValidChessBoard(test))
-print (kingcounter(test))
+print (chessDictionary)
