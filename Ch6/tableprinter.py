@@ -26,10 +26,23 @@ tableData = [['apples', 'oranges', 'cherries', 'banana'],
              ['Alice', 'Bob', 'Carol', 'David'],
              ['dogs', 'cats', 'moose', 'goose']]
 
-def printTable(grid):
+y = []
+
+def length(grid):
+  for j in range(len(grid)):
+    x = 0
     for i in range(len(grid[0])):
-        for j in range(len(grid)):
-            print(grid[j][i] + ' ', end='')
-        print()
+      if x < len(grid[j][i]):
+        x = len(grid[j][i])
+    y.append(x)
+
+def printTable(grid):
+  length(grid)
+  for i in range(len(grid[0])):
+      for j in range(len(grid)):
+          print((grid[j][i]).rjust(y[j]), end='')
+      print()
 
 printTable(tableData)
+
+
