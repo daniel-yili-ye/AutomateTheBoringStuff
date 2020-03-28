@@ -13,13 +13,20 @@ Come up with prices for each of these options, and have your program display a t
 
 import pyinputplus as pyip
 
-# def sandwichmaker():
+menu = {'wheat':1.25,'white':1,'sourdough':2,'chicken':3,'turkey':3.25,'ham':2.5,'tofu':3,'cheddar':1,'swiss':1,'mozzarella':1.25,'sauce':0.5}
 
+total_price = 0
 bread = pyip.inputMenu(['wheat','white','sourdough'],prompt='Bread type: ')
 protein = pyip.inputMenu(['chicken','turkey','ham','tofu'],prompt='Protein type: ')
+total_price = (menu[bread] + menu[protein])
 cheese = pyip.inputYesNo('Cheese?: ')
-cheese_type = pyip.inputMenu(['cheddar','swiss','mozzarella'],prompt='Cheese type: ')
-sauce = pyip.inputYesNo('Mayo, mustard, lettuce, or tomato?: ')
+if cheese == 'yes':
+    cheese_type = pyip.inputMenu(['cheddar','swiss','mozzarella'],prompt='Cheese type: ')
+    total_price += menu[cheese_type]
+sauce = pyip.inputYesNo('Sauce?: ')
+if sauce == 'yes':
+    total_price += menu['sauce']
 sandwich_count = pyip.inputInt('Number of Sandwiches: ',min=1)
+total_price *= sandwich_count
 
-# sandwichmaker()
+print (total_price)
